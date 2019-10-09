@@ -85,7 +85,7 @@ main (int argc, char *argv[])
 
 /*OUTPUT
  
- t.sourceAddress=10.1.1.1
+t.sourceAddress=10.1.1.1
 t.destinationAddress=10.1.1.2 
 Source port:49153
 Destination port:9
