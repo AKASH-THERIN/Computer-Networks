@@ -1,14 +1,13 @@
-from socket import socket
+from socket import *
 
-server_name = "localhost"
-server_port = 8080
-server_socket = socket()
-server_socket.bind((server_name, server_port))
-server_socket.listen()
-
+serverName = "10.124.6.85"
+serverPort = 12000
+serverSocket = socket(AF_INET, SOCK_DGRAM)
+serverSocket.bind((serverName, serverPort))
+print("The server is ready to receive ")
 while True:
-    connection_socket, address = server_socket.accept()
-    message = connection_socket.recv(2048)
-    connection_socket.send(message.decode().upper().encode())
-    print(message)
-    connection_socket.close()
+	fileName, addr = serverSocket.recvfrom(1024)
+	fileName = fileName.decode()
+	with open(fileName, "r") as f:
+		message = f.read() 
+	serverSocket.sendto(message.encode(), addr)
