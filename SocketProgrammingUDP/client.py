@@ -1,13 +1,10 @@
-from socket import socket
+from socket import *
 
-serverName ="10.124.6.83"
-# serverName = "localhost"
-serverPort = 8080
-clientSocket = socket()
-message = "hi.txt"
-clientSocket.connect((serverName, serverPort))
-
-clientSocket.send(message.encode())
-filecontents, address = clientSocket.recvfrom(2048)
-print("From server : ", filecontents.decode())
+serverPort = 12000
+serverName = "10.90.2.154"
+clientSocket = socket(AF_INET, SOCK_DGRAM)
+fileName = input("Enter the file name ").encode()
+clientSocket.sendto(fileName, (serverName, serverPort))
+fileContent, serverAddr = clientSocket.recvfrom(1024)
+print(fileContent.decode())
 clientSocket.close()
